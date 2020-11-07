@@ -1,6 +1,15 @@
-<h2>Hello World</h2>
 <p>
   The time is now: <%= Time.now %>
 </p>
 
-<%= link_to 'Send Message', send_message_path %>
+<%= form_with scope: :message, url: send_message_path, method: :get, remote: true do |form| %>
+  <div class = "form-row" >
+    <div class = "form-group col-md-12" >
+      <%= form.label :msg, 'Message' %><font color="red">*</font><br>
+      <%= form.text_field :msg, class: 'form-control' %>
+    </div>
+    <br>
+  </div>
+  <%= form.submit "Send Message", class: 'btn btn-primary' %>
+<% end %>
+
