@@ -3,11 +3,12 @@ class WelcomeController < ApplicationController
   end
 
   def create
+    puts "#{params}"
     account_sid = 'ACa7cc1b6012166c85ee7e06b9dcb4a616' 
     auth_token = '76816cb9bc230638cf48095420491300' 
     @client = Twilio::REST::Client.new(account_sid, auth_token) 
     message = 
-      if params[:message] && params[:message][:whatsapp].present?
+      if params[:message] && params[:message][:whatsapp] == "1"
         @client.messages.create( 
                                    body: "#{params[:message][:msg]}", 
                                    from: 'whatsapp:+14155238886',       
@@ -20,7 +21,7 @@ class WelcomeController < ApplicationController
                                    to: '+917746857774' 
                                  ) 
       end
-  render 'new'
+    render js: %(window.location.href='#{root_path}')
   end
 end
 

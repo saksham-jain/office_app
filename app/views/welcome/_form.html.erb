@@ -1,0 +1,17 @@
+<p>
+  The time is now: <%= Time.now %>
+</p>
+
+<%= form_with scope: :message, url: send_message_path, method: :post, remote: true do |form| %>
+  <div class = "form-row" >
+    <div class = "form-group col-md-12" >
+      <%= form.label :msg, 'Message' %><font color="red">*</font><br>
+      <%= form.text_field :msg, class: 'form-control', required: true %>
+    </div>
+    <br>
+  </div>
+  <%= form.label "Whatsapp?" %> <br />
+  <%= form.check_box :whatsapp %> <br />
+  <%= form.submit "Send Message", class: 'btn btn-primary' %>
+<% end %>
+
