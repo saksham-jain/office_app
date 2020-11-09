@@ -4,7 +4,7 @@ Rails.application.configure do
   # In the development environment your application's code is reloaded on
   # every request. This slows down response time but is perfect for development
   # since you don't have to restart the web server when you make code changes.
-  config.hosts << "f880c8673ee3.ngrok.io"
+  config.hosts << "18d36431004b.ngrok.io"
   
 
   config.cache_classes = false
@@ -62,4 +62,17 @@ Rails.application.configure do
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+
+  config.action_mailer.default_url_options = { host: '18d36431004b.ngrok.io' }
+
+  config.action_mailer.delivery_method = :smtp
+  # SMTP settings for gmail
+  config.action_mailer.smtp_settings = {
+   :address              => "smtp.gmail.com",
+   :port                 => 587,
+   :user_name            => ENV['gmail_username'],
+   :password             => ENV['gmail_password'],
+   :authentication       => "plain",
+   :enable_starttls_auto => true
+  }
 end
